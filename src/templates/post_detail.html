@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block head_title %} {{block.super}} | {{post.title}}{% endblock head_title %}
+
+{% block content %}
+    <div class='col-sm-6 col-sm-offset-3' style="left: 300px; top:25px;">
+        <h1>Title: {{post.title}} </h1> 
+        {% if post.image %}
+            <img src="{{ post.image.url}}" alt="POST IMG" style="object-fit:cover; width:600px;"><br>
+        {% endif %}
+        <small><strong>Created Date/Time: {{post.timestamp}}</strong></small> <br>
+        <h3>{{post.content|linebreaks}}</h3><br>
+    </div>       
+{% endblock content%}
+
+
+

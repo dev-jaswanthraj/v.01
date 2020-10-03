@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some Thing</title>
+</head>
+<body>
+    <h3>Sign In</h3><br>
+    <form action="{% url 'reg' %}" method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Signin">
+    </form>
+    {{form.error}}
+    <p>Already hade Account <a href="{% url 'login' %}">login</a></p>
+</body>
+</html>

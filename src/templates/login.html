@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some Thing</title>
+</head>
+<body>
+    {% for mes in messages %}
+        {{mes}}
+    {% endfor %}
+    <h3>Login</h3><br>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username" ><br>
+        <input type="password" name="password" placeholder="password"><br>
+        <input type="submit" value="Login">
+        <p>I don't have Account <a href="{% url 'reg' %}">signin</a></p>
+    </form>
+    {{form.error}}
+</body>
+</html>

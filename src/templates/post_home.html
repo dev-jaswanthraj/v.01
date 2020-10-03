@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some Thing</title>
+</head>
+<body>
+    <form action="{% url 'post_home'%}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Enter user name to search">
+        <input type="submit" value="search">
+    </form>
+    
+        {% if user_prof %}
+            {% for i in user_prof %}
+                <a href="{% url 'post_list' id=i.id %}"><h5>{{i}}</h5></a><br>
+            {% endfor %}
+        {% else %}
+            <h5>User Not Found!!!</h5>
+        {% endif %}
+
+    {{user.username}}
+    <a href="{%  url 'logout' %}">logout</a>
+    
+    <a href="{% url 'create' %}">Create a new Post</a>
+    
+    <h1>Top 10 Post.</h1>
+    {% for i in top_10_post %}
+        <a href="{% url 'post_list' id=i.cust.id %}">{{i.cust.username}}</a><br>
+    {% endfor %}
+</body>
+</html>

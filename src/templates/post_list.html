@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% if queryset %}
+    <div class="container">
+        <div class="row">
+            {% for post in queryset %}
+                <div class="col-sm" >
+                        <div class='col-sm-6' style="top:10px; ">
+                            <div class="card" style="width: 18rem;  width:470px; margin-top:20px; box-shadow: 10px 10px 5px grey;">
+                                {% if post.image %}
+                                    <img class="card-img-top" src="{{ post.image.url}}" alt="Card image cap" style="box-shadow: 10px 10px 5px grey;">
+                                {% endif %}
+                                <div class="card-body">
+                                <h5 class="card-title"><a href="{% url 'detail' post.id %}">{{post.title}}</a><small> {{post.timestamp|timesince}}</small></h5>
+                                <p class="card-text" style=" width: 450px;overflow: hidden;height:100px;">{{post.content}}</p>
+                                <a href="#" class="btn btn-primary">View</a>
+                                {% if user.id is post.cust.id %}
+                                    <a href="{% url 'update' post.id %}" class="btn btn-primary">UPDATE</a>
+                                    <a href="#" class="btn btn-primary">DELETE</a>
+                                {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </div>   
+                </div>
+          {% endfor %}
+        </div>
+    </div>
+    
+    {% else %}
+    <h1>upss!!!No more Post is avalible!!!</h1>
+    {% endif %}
+{% endblock content %}
